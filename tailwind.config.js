@@ -1,18 +1,35 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ["class"],
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   theme: {
-    extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+    screens: {
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1200px",
+      "2xl": "1440px",
+    },
+
+    container: {
+      padding: {
+        DEFAULT: "1rem",
+        sm: "1rem",
+        lg: "1rem",
+        xl: "1rem",
+        "2xl": "1rem",
       },
     },
+    fontFamily: {
+      "space-grotesk": ["var(--font-space-grotesk)"],
+      manrope: ["var(--font-manrope)"],
+    },
+    extend: {},
   },
-  plugins: [],
-}
+  plugins: [require("tailwindcss-animate")],
+};
