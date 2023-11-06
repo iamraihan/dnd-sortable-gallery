@@ -13,9 +13,7 @@ import UploadImages from "./UploadImages";
 
 export default function Gallery({ galleryImages }) {
   const [photos, setPhotos] = useState(galleryImages);
-  console.log("photos: ", photos);
   const [selectedIds, setSelectedIds] = useState([]);
-  console.log("selectedIds: ", selectedIds);
 
   useEffect(() => {
     setPhotos(galleryImages);
