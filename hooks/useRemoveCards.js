@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const useRemoveCard = (totalCollection, removableIds) => {
+const useRemoveCards = (totalCollection, removableIds) => {
   const [items, setItems] = useState(totalCollection);
 
   const handleDelete = (id) => {
@@ -20,4 +20,4 @@ const useRemoveCard = (totalCollection, removableIds) => {
   return items;
 };
 
-export default useRemoveCard;
+export default useRemoveCards;

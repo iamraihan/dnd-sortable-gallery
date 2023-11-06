@@ -11,14 +11,14 @@ import GallerySortable from "@/components/gallery/GallerySortable";
 import RemoveImage from "@/components/gallery/RemoveImage";
 
 export default function Gallery({ galleryImages }) {
-  const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState(galleryImages);
   console.log("photos: ", photos);
   const [selectedIds, setSelectedIds] = useState([]);
   console.log("selectedIds: ", selectedIds);
 
   useEffect(() => {
     setPhotos(galleryImages);
-  }, [galleryImages]);
+  }, [galleryImages, setPhotos]);
 
   const handleDragStart = (event) => {
     // console.log("Drag Start:", event.active.id);
@@ -46,6 +46,7 @@ export default function Gallery({ galleryImages }) {
           selectedIds={selectedIds}
           photos={photos}
           setPhotos={setPhotos}
+          setSelectedIds={setSelectedIds}
         />
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {photos.map((photo, index) => (

@@ -11,25 +11,37 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import useRemoveCard from "@/hooks/useRemoveCard";
+import useRemoveCards from "@/hooks/useRemoveCards";
 
-export default function RemoveImage({ selectedIds, photos, setPhotos }) {
-  const updatedPhotos = useRemoveCard(photos, selectedIds);
+export default function RemoveImage({
+  selectedIds,
+  photos,
+  setPhotos,
+  setSelectedIds,
+}) {
+  const updatedPhotos = useRemoveCards(photos, selectedIds);
   const handleImageDeletion = () => {
+    if (!selectedIds.length) return;
     setPhotos(updatedPhotos);
+    setSelectedIds([]);
   };
 
   return (
     <div className="flex justify-between py-5">
-      <p>Selected Items: </p>
+      <p>Selected Items: {selectedIds.length} </p>
       <p className="text-red-600">
         <AlertDialog>
           <AlertDialogTrigger asChild>
-            <Button variant="outline">Show Dialog</Button>
+            <Button variant="ghost">Delete Files</Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogTitle>
+                {" "}
+                {selectedIds.length
+                  ? "Are you absolutely sure? "
+                  : "Please select file"}
+              </AlertDialogTitle>
               <AlertDialogDescription>
                 This action cannot be undone. This will permanently delete your
                 account and remove your data from our servers.
@@ -38,7 +50,7 @@ export default function RemoveImage({ selectedIds, photos, setPhotos }) {
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
               <AlertDialogAction onClick={handleImageDeletion}>
-                Continue
+                Delete{" "}
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
