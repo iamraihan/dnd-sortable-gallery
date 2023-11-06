@@ -12,6 +12,8 @@ import RemoveImage from "./RemoveImage";
 
 export default function Gallery({ galleryImages }) {
   const [photos, setPhotos] = useState(galleryImages);
+  const [selectedIds, setSelectedIds] = useState([]);
+  console.log("selectedIds: ", selectedIds);
 
   const handleDragStart = (event) => {
     // console.log("Drag Start:", event.active.id);
@@ -38,7 +40,13 @@ export default function Gallery({ galleryImages }) {
         <RemoveImage />
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {photos.map((photo, index) => (
-            <GallerySortable photo={photo} key={photo.id} index={index} />
+            <GallerySortable
+              photo={photo}
+              key={photo.id}
+              index={index}
+              selectedIds={selectedIds}
+              setSelectedIds={setSelectedIds}
+            />
           ))}
         </div>
       </SortableContext>

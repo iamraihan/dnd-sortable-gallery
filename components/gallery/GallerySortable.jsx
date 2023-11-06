@@ -5,7 +5,12 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Check } from "lucide-react";
 
-export default function GallerySortable({ photo, index }) {
+export default function GallerySortable({
+  photo,
+  index,
+  selectedIds,
+  setSelectedIds,
+}) {
   const {
     attributes,
     listeners,
@@ -22,6 +27,7 @@ export default function GallerySortable({ photo, index }) {
   });
 
   const [isSelected, setIsSelected] = useState(false);
+
   const style = {
     transition,
     transform: CSS.Transform.toString(transform),
@@ -29,10 +35,15 @@ export default function GallerySortable({ photo, index }) {
     height: `${index === 0 ? "510px" : "250px"}`,
   };
 
-  const isSelectedHandler = () => {
-    console.log("Clicked!"); // Add this line for debugging
-    setIsSelected((isSelected) => !isSelected);
+  const isSelectedHandler = (id) => {
+    const newSelectedIds = isSelected
+      ? selectedIds.filter((selectedId) => selectedId !== id)
+      : [...selectedIds, id];
+
+    setSelectedIds(newSelectedIds);
+    setIsSelected(!isSelected);
   };
+
   return (
     <div
       ref={setNodeRef}
@@ -49,7 +60,7 @@ export default function GallerySortable({ photo, index }) {
     >
       <div
         role="button"
-        onClickCapture={isSelectedHandler}
+        onClickCapture={() => isSelectedHandler(photo.id)}
         className={`w-6 h-6 ${
           isSelected ? "bg-blue-500" : "group-hover:bg-white"
         }  rounded-md absolute top-5 left-5 flex   group-hover:flex justify-center items-center`}
