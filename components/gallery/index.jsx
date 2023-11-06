@@ -8,6 +8,7 @@ import {
   rectSortingStrategy,
 } from "@dnd-kit/sortable";
 import GallerySortable from "@/components/gallery/GallerySortable";
+import RemoveImage from "./RemoveImage";
 
 export default function Gallery({ galleryImages }) {
   const [photos, setPhotos] = useState(galleryImages);
@@ -34,6 +35,7 @@ export default function Gallery({ galleryImages }) {
       onDragEnd={handleDragEnd}
     >
       <SortableContext items={photos} strategy={rectSortingStrategy}>
+        <RemoveImage />
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {photos.map((photo, index) => (
             <GallerySortable photo={photo} key={photo.id} index={index} />
