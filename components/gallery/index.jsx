@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import {
   SortableContext,
@@ -8,12 +8,17 @@ import {
   rectSortingStrategy,
 } from "@dnd-kit/sortable";
 import GallerySortable from "@/components/gallery/GallerySortable";
-import RemoveImage from "./RemoveImage";
+import RemoveImage from "@/components/gallery/RemoveImage";
 
 export default function Gallery({ galleryImages }) {
-  const [photos, setPhotos] = useState(galleryImages);
+  const [photos, setPhotos] = useState([]);
+  console.log("photos: ", photos);
   const [selectedIds, setSelectedIds] = useState([]);
   console.log("selectedIds: ", selectedIds);
+
+  useEffect(() => {
+    setPhotos(galleryImages);
+  }, [galleryImages]);
 
   const handleDragStart = (event) => {
     // console.log("Drag Start:", event.active.id);
@@ -37,7 +42,11 @@ export default function Gallery({ galleryImages }) {
       onDragEnd={handleDragEnd}
     >
       <SortableContext items={photos} strategy={rectSortingStrategy}>
-        <RemoveImage />
+        <RemoveImage
+          selectedIds={selectedIds}
+          photos={photos}
+          setPhotos={setPhotos}
+        />
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {photos.map((photo, index) => (
             <GallerySortable
