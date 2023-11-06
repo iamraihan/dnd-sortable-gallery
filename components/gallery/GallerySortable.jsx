@@ -44,7 +44,7 @@ export default function GallerySortable({
     transition,
     transform: CSS.Transform.toString(transform),
     backgroundImage: `url(${photo.photo})`,
-    height: `${index === 0 ? "510px" : "250px"}`,
+    height: `${index === 0 ? "516px" : "250px"}`,
   };
 
   /**

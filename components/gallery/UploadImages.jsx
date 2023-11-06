@@ -79,7 +79,7 @@ export default function UploadImages({ photos, setPhotos }) {
     >
       <label
         htmlFor="fileInput"
-        className="cursor-pointer flex justify-center items-center flex-col p-20"
+        className="cursor-pointer flex justify-center items-center flex-col pb-16 p-20 "
       >
         <div>
           <Image />
