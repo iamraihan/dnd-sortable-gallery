@@ -67,7 +67,9 @@ export default function GallerySortable({
       style={style}
       {...attributes}
       {...listeners}
-      className={`border border-gray-300 rounded-md bg-cover bg-center relative group hover:before:bg-gray-500 hover:before:absolute hover:before:w-full hover:before:h-full hover:before:opacity-50 ${
+      className={`h-${
+        index === 0 ? "516px" : "250px"
+      } border border-gray-300 rounded-md bg-cover bg-center relative group hover:before:bg-gray-500 hover:before:absolute hover:before:w-full hover:before:h-full hover:before:opacity-50 ${
         index === 0 ? "col-span-2 row-span-2" : ""
       } ${
         isDragging
