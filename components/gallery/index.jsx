@@ -9,6 +9,7 @@ import {
 } from "@dnd-kit/sortable";
 import GallerySortable from "@/components/gallery/GallerySortable";
 import RemoveImage from "@/components/gallery/RemoveImage";
+import UploadImages from "./UploadImages";
 
 export default function Gallery({ galleryImages }) {
   const [photos, setPhotos] = useState(galleryImages);
@@ -58,6 +59,7 @@ export default function Gallery({ galleryImages }) {
               setSelectedIds={setSelectedIds}
             />
           ))}
+          <UploadImages photos={photos} setPhotos={setPhotos} />
         </div>
       </SortableContext>
     </DndContext>

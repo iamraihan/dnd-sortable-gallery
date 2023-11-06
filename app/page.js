@@ -16,7 +16,7 @@ export default function Home() {
     { id: 12, photo: "/image-11.jpeg" },
   ];
   return (
-    <div className="container mx-auto font-poppins">
+    <div className="container mx-auto font-poppins pb-10">
       <Gallery galleryImages={galleryImages} />
     </div>
   );
