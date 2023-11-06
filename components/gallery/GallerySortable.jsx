@@ -51,8 +51,8 @@ export default function GallerySortable({ photo, index }) {
         role="button"
         onClickCapture={isSelectedHandler}
         className={`w-6 h-6 ${
-          isSelected ? "group-hover:bg-blue-500" : "group-hover:bg-white"
-        }  rounded-md absolute top-5 left-5 hidden group-hover:flex justify-center items-center`}
+          isSelected ? "bg-blue-500" : "group-hover:bg-white"
+        }  rounded-md absolute top-5 left-5 flex   group-hover:flex justify-center items-center`}
       >
         {isSelected && <Check color="#fff" width="16" />}
       </div>
